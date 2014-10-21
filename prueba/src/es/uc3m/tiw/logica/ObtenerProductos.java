@@ -1,7 +1,6 @@
 package es.uc3m.tiw.logica;
 
 import java.util.ArrayList;
-import java.util.Random;
 
 import es.uc3m.tiw.contenedores.Product;
 
@@ -18,16 +17,17 @@ public class ObtenerProductos {
 			/*esta parte se encontraria comentada hasta que implementemos la conexión con la BBDD*/
 			int numeroProductos = 5;
 			int tiposProducto = 6;
+			int contadorIdProductos = 1;
 			for (int y = 0; y < tiposProducto; y++)
 			{
 				int tipoProducto = y+1;
 				for (int i = 0; i < numeroProductos; i ++)
 				{
 					Product objetoProducto = new Product();
-					objetoProducto.setId(i+1);
+					objetoProducto.setId(contadorIdProductos);
 					objetoProducto.setType(tipoProducto);
-					objetoProducto.setName("objeto"+(i+1));
-					objetoProducto.setDescription("descripcion"+(i+1));
+					objetoProducto.setName("objeto"+contadorIdProductos);
+					objetoProducto.setDescription("descripcion"+contadorIdProductos);
 					objetoProducto.setEnterpriseId(enterpriseId);
 					objetoProducto.setAvailability(numeroProductos);
 					objetoProducto.setMinPrice(10);
@@ -41,6 +41,7 @@ public class ObtenerProductos {
 					if (randomNum == i)
 						objetoProducto.setOferta(true);
 					listadoProductos.add(objetoProducto);
+					contadorIdProductos++;
 				}	
 			}	
 		}
@@ -50,6 +51,7 @@ public class ObtenerProductos {
 			/*esta parte se encontraria comentada hasta que implementemos la conexión con la BBDD*/
 			int numeroProductos = 10;
 			int tiposProducto = 6;
+			int contadorIdProductos = 1;
 			for (int y = 0; y < tiposProducto; y++)
 			{
 				int tipoProducto = y+1;
@@ -57,10 +59,10 @@ public class ObtenerProductos {
 				for (int i = 0; i < numeroProductos; i ++)
 				{
 					Product objetoProducto = new Product();
-					objetoProducto.setId(i+1);
+					objetoProducto.setId(contadorIdProductos);
 					objetoProducto.setType(tipoProducto);
-					objetoProducto.setName("objeto"+(i+1));
-					objetoProducto.setDescription("descripcion"+(i+1));
+					objetoProducto.setName("objeto"+contadorIdProductos);
+					objetoProducto.setDescription("descripcion"+contadorIdProductos);
 					objetoProducto.setEnterpriseId(empresa);
 					objetoProducto.setAvailability(numeroProductos);
 					objetoProducto.setMinPrice(10);
@@ -72,8 +74,9 @@ public class ObtenerProductos {
 					//ñapa que nos calcule las ofertas de forma aleatoria
 					int randomNum = 1 + (int)(Math.random()*60); 				
 					if (randomNum == i)
-						objetoProducto.setOferta(true);
-					listadoProductos.add(objetoProducto);		
+						objetoProducto.setOferta(true);					
+					listadoProductos.add(objetoProducto);	
+					contadorIdProductos++;
 				}	
 			}					
 		}

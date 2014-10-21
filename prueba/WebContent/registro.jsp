@@ -1,11 +1,22 @@
-<!DOCTYPE html>
-<html lang="en">
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+
+<%@ page import="java.util.*" %>
+<%@ page import=" es.uc3m.tiw.logica.*" %>
+<%@ page import=" es.uc3m.tiw.contenedores.*" %>
+
+<%	
+	ArrayList<UserType> arrayTiposUsuarios = (ArrayList)request.getAttribute("LISTA_TIPOS_USUARIO");
+%>
+
+<html lang="es">
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="">
     <meta name="author" content="">
-    <title>Talaverámica</title>
+    <title>Talaveramica</title>
     <link href="css/bootstrap.min.css" rel="stylesheet">
     <link href="css/font-awesome.min.css" rel="stylesheet">
     <link href="css/prettyPhoto.css" rel="stylesheet">
@@ -57,7 +68,7 @@
 				<div class="row">
 					<div class="col-sm-4">
 						<div class="logo pull-left">
-							<a href="index.html"><img src="images/home/logo.png" alt="" /></a>
+							<a href="tiw"><img src="images/home/logo.png" alt="" /></a>
 						</div>
 					</div>
 					<div class="col-sm-8">
@@ -68,6 +79,7 @@
 								<li><a href="checkout.html"><i class="fa fa-crosshairs"></i> Checkout</a></li>
 								<li><a href="cart.html"><i class="fa fa-shopping-cart"></i> Carrito</a></li>
 								<li><a href="login.html"><i class="fa fa-lock"></i> Login</a></li>
+								<li><a href="tiwReg"><i class="fa fa-lock"></i> Registro</a></li>
 							</ul>
 						</div>
 					</div>
@@ -81,7 +93,7 @@
 					<div class="col-sm-9">
 						<div class="navbar-header">
 							<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-								<span class="sr-only">Navegación</span>
+								<span class="sr-only">Navegacion</span>
 								<span class="icon-bar"></span>
 								<span class="icon-bar"></span>
 								<span class="icon-bar"></span>
@@ -89,14 +101,15 @@
 						</div>
 						<div class="mainmenu pull-left">
 							<ul class="nav navbar-nav collapse navbar-collapse">
-								<li><a href="index.html" class="active">Inicio</a></li>
+								<li><a href="tiw" class="active">Inicio</a></li>
 								<li class="dropdown"><a href="#">Tienda<i class="fa fa-angle-down"></i></a>
                                     <ul role="menu" class="sub-menu">
                                         <li><a href="shop.html">Productos</a></li>
 										<li><a href="product-details.html">Detalles del producto</a></li> 
 										<li><a href="checkout.html">Checkout</a></li> 
 										<li><a href="cart.html">Carrito</a></li> 
-										<li><a href="login.html">Login</a></li> 
+										<li><a href="login.html"><i class="fa fa-lock"></i> Login</a></li>
+										<li><a href="tiwReg"><i class="fa fa-lock"></i> Registro</a></li>
                                     </ul>
                                 </li> 
 								
@@ -117,25 +130,39 @@
 	</header><!--/header-->
 	
 	<div class="container">
-		<p>Elija el tipo de registro que desea realizar:</p><br>
-			<form id="signup">
-				<p><input type="radio" name="user" value="client">Cliente
-				<input type="radio" name="user" value="enterprise">Proveedor</p><br>
-				<p>A continuación rellene los campos requeridos:</p>
-				Nombre: <input type="text" name="firstname"><br>
-				Primer apellido: <input type="text" name="lastname1"><br>
-				Segundo apellido: <input type="text" name="lastname2"><br>
-				Tipo de documento: 
-				<input type="radio" name="user" value="DNI">DNI
-				<input type="radio" name="user" value="CIF">CIF
-				<input type="radio" name="user" value="passport">Pasaporte<br>
-				Documento: <input type="text" name="document_num"><br>
-				Contraseña: <input type="password" name="password"><br>
-				Dirección: <input type="text" name="address"><br>
-				Empresa: <input type="text" name="enterprise"><br>
-				Dirección de empresa: <input type="text" name="enterpriseAddress"><br>
+		<p>Elija el tipo de registro que desea realizar:</p>
+			<form id="signup" action="tiwReg" method="post">
+					<%	for(int i=0;i<arrayTiposUsuarios.size();i++)
+								{
+									UserType objetoTipoUsuario = (UserType)arrayTiposUsuarios.get(i);
+									%>				
+					<p><input type="radio" name="userType" value="<%=objetoTipoUsuario.getType() %>" ><%=objetoTipoUsuario.getDescription() %></p>
+					<%			} %>
+				<p>A continuacion rellene los campos requeridos:</p>
+				<p>Nombre: </p>
+				<p><input type="text" name="name"></p>
+				<p>Primer apellido: </p>
+				<p><input type="text" name="lastName"></p>
+				<p>Segundo apellido: </p>
+				<p><input type="text" name="secondLastName"></p>
+				<p>Tipo de documento: </p>
+				<p>
+					<input type="radio" name="documentType" value="1">DNI
+					<input type="radio" name="documentType" value="2">CIF
+					<input type="radio" name="documentType" value="3">Pasaporte
+				</p>
+				<p>Documento: </p>
+				<p><input type="text" name="document"></p>
+				<p>Contraseña: </p>
+				<p><input type="password" name="password"></p>
+				<p>Direccion: </p>
+				<p><input type="text" name="address"></p>
+				<p>Empresa: </p>
+				<p><input type="text" name="enterprise"></p>
+				<p>Direccion de empresa: </p>
+				<p><input type="text" name="enterpriseAddress"></p>
 
-				<input type="submit" value="Crear cuenta"><br>
+				<p><input type="submit" value="Crear cuenta"></p>
 
 			</form>
 	</div>
@@ -146,8 +173,8 @@
 				<div class="row">
 					<div class="col-sm-2">
 						<div class="companyinfo">
-							<h2><span>TIW</span>-talaverámica</h2>
-							<p>La mejor cerámica a sólo un CLICK</p>
+							<h2><span>TIW</span>-talaveramica</h2>
+							<p>La mejor ceramica a solo un CLICK</p>
 						</div>
 					</div>
 					<div class="col-sm-7">
@@ -156,19 +183,19 @@
 							<h2>Servicios</h2>
 							<ul class="nav nav-pills nav-stacked">
 								<li><a href="">Ayuda ONLINE</a></li>
-								<li><a href="">Contáctenos</a></li>
-								<li><a href="">FAQ’s</a></li>
+								<li><a href="">Contactenos</a></li>
+								<li><a href="">FAQs</a></li>
 							</ul>
 						</div>
 					</div>
 						
 						<div class="col-sm-3">
 						<div class="single-widget">
-							<h2>Políticas</h2>
+							<h2>Politicas</h2>
 							<ul class="nav nav-pills nav-stacked">
 								<li><a href="">Terminos de uso</a></li>
-								<li><a href="">Política de privacidad</a></li>
-								<li><a href="">Política de reembolso</a></li>
+								<li><a href="">Politica de privacidad</a></li>
+								<li><a href="">Politica de reembolso</a></li>
 							</ul>
 						</div>
 					</div>
@@ -177,8 +204,8 @@
 						<div class="single-widget">
 							<h2>Tienda</h2>
 							<ul class="nav nav-pills nav-stacked">
-								<li><a href="">Información de la compañía</a></li>
-								<li><a href="">Localización de la tienda</a></li>
+								<li><a href="">Informacion de la compañia</a></li>
+								<li><a href="">Localizacion de la tienda</a></li>
 								<li><a href="">Copyright</a></li>
 							</ul>
 						</div>
@@ -187,7 +214,7 @@
 					<div class="col-sm-3">
 						<div class="address">
 							<img src="images/home/map.png" alt="" />
-							<p>Av de Gregorio Peces-Barba Martínez, Colmenarejo (Madrid)</p>
+							<p>Av de Gregorio Peces-Barba Martinez, Colmenarejo (Madrid)</p>
 						</div>
 					</div>
 				</div>
@@ -197,7 +224,7 @@
 		<div class="footer-bottom">
 			<div class="container">
 				<div class="row">
-					<p class="pull-left">Copyright © 2014 TIW-TALAVERÁMICA Inc.Todos los derechos reservados.</p>
+					<p class="pull-left">Copyright © 2014 TIW-TALAVERAMICA Inc.Todos los derechos reservados.</p>
 					<p class="pull-right">Diseñado por <span><a target="_blank" href="http://www.uc3m.es">Grupo 50</a></span></p>
 				</div>
 			</div>

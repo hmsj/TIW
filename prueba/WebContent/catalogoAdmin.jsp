@@ -57,7 +57,7 @@ function inicio()
 	<%if (mensaje != null && !"".equals(mensaje))
 	{%>
 		alert("<%=mensaje%>");
-		<%}%>
+  <%}%>
 	
 }
 function filtrarResultados(tipoProductoSeleccionado)
@@ -95,6 +95,137 @@ function filtrarResultados(tipoProductoSeleccionado)
 			}	
 		}
 	}
+}
+
+function EliminarProducto(id)
+{
+	var seccionProducto = document.getElementById(id);
+	var padreSeccionProducto = seccionProducto.parentNode;
+	padreSeccionProducto.removeChild(seccionProducto);	
+	
+	var strId = ""+id;
+	
+	if (strId.indexOf("New_") > -1)
+	{
+		alert("Eliminar nuevo")
+		//si el producto es nuevo, debemos eliminar de la cola de productosGenerados y no incluir en la cola de productosEliminados
+		var listadoProductosGenerados = document.getElementById('productosGenerados');
+		var listadoProductosGenerados2 = "";
+		if (listadoProductosGenerados.value != "")
+		{			
+			var listadoProvisional = listadoProductosGenerados.value.split(";");	
+			var existe = 0;
+			for (var i = 0; i < listadoProvisional.length; i++)
+			{
+				if (listadoProvisional[i] != id)
+				{
+					if (listadoProductosGenerados2 == "")
+					{
+						listadoProductosGenerados2 += listadoProvisional[i];
+					}
+					else
+					{
+						listadoProductosGenerados2 += ";"+listadoProvisional[i];
+					}
+				}				
+			}	
+			document.getElementById('productosGenerados').value = listadoProductosGenerados2;
+		}
+		alert("Tras quitar el nuevo, el listado de productosGenerados queda: "+document.getElementById('productosGenerados').value);
+		alert("El listado de productosEliminados queda: "+document.getElementById('productosEliminados').value);		
+	}
+	else
+	{
+		alert("Eliminar existente")
+		//si el producto ya existe, debemos añadir a la cola de productos a eliminar
+		var listadoProductosEliminados = document.getElementById('productosEliminados');
+		if (listadoProductosEliminados.value == "")
+		{
+			listadoProductosEliminados.value = id;
+		}
+		else
+		{
+			listadoProductosEliminados.value += ";"+id;
+		}
+		alert("Tras quitar el existente, el listado de productosEliminados queda: "+document.getElementById('productosEliminados').value);		
+	}
+}
+
+function ModificarProducto(id)
+{		
+	var listadoProductosModificados = document.getElementById('productosModificados');
+	if (listadoProductosModificados.value == "")
+	{
+		listadoProductosModificados.value = id;
+	}
+	else
+	{
+		var listadoProvisional = listadoProductosModificados.value.split(";");	
+		var existe = 0;
+		for (var i = 0; i < listadoProvisional.length; i++)
+		{
+			if (listadoProvisional[i] == id)
+			{
+				existe = 1;	
+			}				
+		}	
+		if (existe == 0)
+		{
+			listadoProductosModificados.value += ";"+id;
+		}
+	}
+	alert("El listado de productosModificados queda: "+document.getElementById('productosModificados').value);
+}
+
+var productosCreados = 0;
+
+function CrearProducto()
+{
+	var seccionListadoProductos = document.getElementById('listadoProductos');
+	
+	productosCreados++;
+	
+	var codigoHtmlProducto = '';
+	
+	codigoHtmlProducto += '<div class="col-sm-4 Tipo_99" id="New_'+productosCreados+'"><div class="product-image-wrapper"><div class="single-products"><div class="productinfo text-center">';
+	codigoHtmlProducto += '<p><input id="New_'+productosCreados+'_Img" type="file" value=""></p>';
+	codigoHtmlProducto += '<p><input id="New_'+productosCreados+'_Type" type="text" value="tipo"></p>';
+	codigoHtmlProducto += '<p><input id="New_'+productosCreados+'_Name" type="text" value="nombre"></p>';
+	codigoHtmlProducto += '<p><input id="New_'+productosCreados+'_Description" type="text" value="descripcion"></p>';
+	codigoHtmlProducto += '<p><input id="New_'+productosCreados+'_MinPrice" type="text" value="precio minimo"></p>';
+	codigoHtmlProducto += '<p><input id="New_'+productosCreados+'_MaxPrice" type="text" value="precio maximo"></p>';
+	codigoHtmlProducto += '<p><input id="New_'+productosCreados+'_Availability" type="text" value="disponibilidad"></p>';
+	codigoHtmlProducto += '</div></div><div class="choose">';
+	codigoHtmlProducto += '<ul class="nav nav-pills nav-justified">';
+	codigoHtmlProducto += '<li><a href="#" onClick="EliminarProducto(\'New_'+productosCreados+'\')"><i class="fa fa-plus-square"></i>Eliminar Producto</a></li>';
+	codigoHtmlProducto += '</ul>';
+	codigoHtmlProducto += '</div></div></div>';
+	
+	seccionListadoProductos.innerHTML += codigoHtmlProducto;
+	
+	var listadoProductosGenerados = document.getElementById('productosGenerados');
+	if (listadoProductosGenerados.value == "")
+	{
+		listadoProductosGenerados.value = "New_"+ productosCreados;
+	}
+	else
+	{
+		listadoProductosGenerados.value += ";"+"New_"+ productosCreados;
+	}
+	alert("El listado de productosGenerados queda: "+document.getElementById('productosGenerados').value);
+}
+
+function GuardarCambios()
+{
+	//cuando vayamos a guardar los cambios, debemos realizar las siguientes tareas	
+	//guardar la informacion de los productos generados nuevos
+	
+	//guardar la informacion de los productos a eliminar 
+		
+	//guardar la informacion de los productos modificados
+	
+	
+	document.productos.submit();
 }
 </script>
 
@@ -222,78 +353,6 @@ function filtrarResultados(tipoProductoSeleccionado)
 		</div><!--/header-bottom-->
 	</header><!--/header-->
 	
-	<section id="slider"><!--slider-->
-		<div class="container">
-			<div class="row">
-				<div class="col-sm-12">
-					<div id="slider-carousel" class="carousel slide" data-ride="carousel">
-						<ol class="carousel-indicators">
-							<%	for(int i=0;i<arrayProductos.size();i++)
-								{
-									Product objetoProducto = (Product)arrayProductos.get(i);
-									int primero = 0;
-									if (objetoProducto.isOferta())
-									{
-										%> 
-										<%if (primero == 1)
-											{%>
-							<li data-target="#slider-carousel" data-slide-to="<%=i%>" class="active"></li>
-											<%
-											}
-										else
-										{%>
-							<li data-target="#slider-carousel" data-slide-to="<%=i%>"></li>			
-										<%}	%>
-							<%		}
-								}%>
-						</ol>
-						
-						<div class="carousel-inner">
-							<%	int primero = 1;									
-								for(int i=0;i<arrayProductos.size();i++)
-								{
-									Product objetoProducto = (Product)arrayProductos.get(i);
-									if (objetoProducto.isOferta())
-									{
-										%> 
-										<%if (primero == 1)
-											{%>
-							<div class="item active">
-											<%
-											primero++;
-											}
-											else
-											{%>
-							<div class="item">			
-										<%	}	%>
-								<div class="col-sm-6">
-									<h1><span>T</span>-OFERTAS</h1>
-									<h2><%=objetoProducto.getName()%></h2>
-									<p><%=objetoProducto.getDescription()%></p>
-									<button type="button" class="btn btn-default get">Compralo</button>
-								</div>
-								<div class="col-sm-6">
-									<img src="images/home/gallery1.jpg" class="girl img-responsive" alt="" />
-									
-								</div>
-							</div>
-							<%		}
-								}%>
-						</div>
-						
-						<a href="#slider-carousel" class="left control-carousel hidden-xs" data-slide="prev">
-							<i class="fa fa-angle-left"></i>
-						</a>
-						<a href="#slider-carousel" class="right control-carousel hidden-xs" data-slide="next">
-							<i class="fa fa-angle-right"></i>
-						</a>
-					</div>
-					
-				</div>
-			</div>
-		</div>
-	</section><!--/slider-->
-	
 	<section>
 		<div class="container">
 			<div class="row">
@@ -321,32 +380,50 @@ function filtrarResultados(tipoProductoSeleccionado)
 				</div>
 				
 				<div class="col-sm-9 padding-right">
-					<div class="features_items"><!--features_items-->
-						<h2 class="title text-center">Catálogo</h2>
+					<form id="productos" action="tiw" method="post">
+						<div class="features_items"><!--features_items-->
+						<h2 class="title text-center">Catálogo de Proveedor</h2>
+						<div id="listadoProductos">
 						<% for(int i=0;i<arrayProductos.size();i++)
 								{
 									Product objetoProducto = (Product)arrayProductos.get(i);%>									
-						<div class="col-sm-4 Tipo_<%=objetoProducto.getType()%>" >
+						<div class="col-sm-4 Tipo_<%=objetoProducto.getType()%>" id="<%=objetoProducto.getId()%>">
 							<div class="product-image-wrapper" >
 								<div class="single-products" >
 										<div class="productinfo text-center">
 											<img src="images/home/product1.jpg" alt="" />
-											<h2><%=objetoProducto.getPrice()%>€</h2>
-											<p><%=objetoProducto.getName()%></p>
-											<a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Añadir al carro</a>
-										</div>
-										<div class="product-overlay">
-											<div class="overlay-content">
-												<h2><%=objetoProducto.getPrice()%>€</h2>
-												<p><%=objetoProducto.getDescription()%></p>
-												<a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Añadir al carro</a>
-											</div>
+											<p><input id="<%=objetoProducto.getId()%>_Img" type="file" value=""></p>
+											<p>Tipo: </p>
+											<p><input id="<%=objetoProducto.getId()%>_Type" type="text" value="<%=objetoProducto.getType()%>"></p>
+											<p>Nombre: </p>
+											<p><input id="<%=objetoProducto.getId()%>_Name" type="text" value="<%=objetoProducto.getName()%>"></p>
+											<p>Descripcion: </p>
+											<p><input id="<%=objetoProducto.getId()%>_Description" type="text" value="<%=objetoProducto.getDescription()%>"></p>
+											<p>P.Minimo: </p>
+											<p><input id="<%=objetoProducto.getId()%>_MinPrice" type="text" value="<%=objetoProducto.getMinPrice()%>"></p>
+											<p>P.Maximo: </p>
+											<p><input id="<%=objetoProducto.getId()%>_MaxPrice" type="text" value="<%=objetoProducto.getMaxPrice()%>"></p>
+											<p>Disponibilidad: </p>
+											<p><input id="<%=objetoProducto.getId()%>_Availability" type="text" value="<%=objetoProducto.getAvailability()%>"></p>
 										</div>
 								</div>
+								<div class="choose">
+									<ul class="nav nav-pills nav-justified">
+										<li><a href="#" onClick="EliminarProducto(<%=objetoProducto.getId()%>)"><i class="fa fa-plus-square"></i>Eliminar Producto</a></li>
+										<li><a href="#" onClick="ModificarProducto(<%=objetoProducto.getId()%>)"><i class="fa fa-plus-square"></i>Modificar Producto</a></li>										
+									</ul>
+								</div>
 							</div>
-						</div>						
-						<%		} %>						
+						</div>												
+						<%		} %>
+						</div>
 					</div><!--features_items-->
+					<input type="button" onClick="CrearProducto()" value="Crear Producto">
+					<input type="button" value="Guardar Cambios" onClick="GuardarCambios()">
+					<input type="hidden" id="productosEliminados" value="">
+					<input type="hidden" id="productosModificados" value="">
+					<input type="hidden" id="productosGenerados" value="">
+				</form>						
 				</div>
 			</div>	
 		</div>
