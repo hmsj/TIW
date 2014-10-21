@@ -1,11 +1,11 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="">
     <meta name="author" content="">
-    <title>Checkout | TIW-TALAVERÁMICA</title>
+    <title>Checkout | TIW-TALAVER�MICA</title>
     <link href="css/bootstrap.min.css" rel="stylesheet">
     <link href="css/font-awesome.min.css" rel="stylesheet">
     <link href="css/prettyPhoto.css" rel="stylesheet">
@@ -24,96 +24,8 @@
     <link rel="apple-touch-icon-precomposed" href="images/ico/apple-touch-icon-57-precomposed.png">
 </head><!--/head-->
 
-<body>
-	<header id="header"><!--header-->
-		<div class="header_top"><!--header_top-->
-			<div class="container">
-				<div class="row">
-					<div class="col-sm-6">
-						<div class="contactinfo">
-							<ul class="nav nav-pills">
-								<li><a href="#"><i class="fa fa-phone"></i> +34 111 11 11</a></li>
-								<li><a href="#"><i class="fa fa-envelope"></i> info@talaveramica.com</a></li>
-							</ul>
-						</div>
-					</div>
-					<div class="col-sm-6">
-						<div class="social-icons pull-right">
-							<ul class="nav navbar-nav">
-								<li><a href="#"><i class="fa fa-facebook"></i></a></li>
-								<li><a href="#"><i class="fa fa-twitter"></i></a></li>
-								<li><a href="#"><i class="fa fa-linkedin"></i></a></li>
-								<li><a href="#"><i class="fa fa-dribbble"></i></a></li>
-								<li><a href="#"><i class="fa fa-google-plus"></i></a></li>
-							</ul>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div><!--/header_top-->
-		
-		<div class="header-middle"><!--header-middle-->
-			<div class="container">
-				<div class="row">
-					<div class="col-sm-4">
-						<div class="logo pull-left">
-							<a href="index.html"><img src="images/home/logo.png" alt="" /></a>
-						</div>
-					</div>
-					<div class="col-sm-8">
-						<div class="shop-menu pull-right">
-							<ul class="nav navbar-nav">
-								<li><a href="#"><i class="fa fa-user"></i> Mi Cuenta</a></li>
-								<li><a href="#"><i class="fa fa-star"></i> Lista de deseos</a></li>
-								<li><a href="checkout.html"><i class="fa fa-crosshairs"></i> Checkout</a></li>
-								<li><a href="cart.html"><i class="fa fa-shopping-cart"></i> Carrito</a></li>
-								<li><a href="login.html"><i class="fa fa-lock"></i> Login</a></li>
-							</ul>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div><!--/header-middle-->
-	
-		<div class="header-bottom"><!--header-bottom-->
-			<div class="container">
-				<div class="row">
-					<div class="col-sm-9">
-						<div class="navbar-header">
-							<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-								<span class="sr-only">Navegación</span>
-								<span class="icon-bar"></span>
-								<span class="icon-bar"></span>
-								<span class="icon-bar"></span>
-							</button>
-						</div>
-						<div class="mainmenu pull-left">
-							<ul class="nav navbar-nav collapse navbar-collapse">
-								<li><a href="index.html" class="active">Inicio</a></li>
-								<li class="dropdown"><a href="#">Tienda<i class="fa fa-angle-down"></i></a>
-                                    <ul role="menu" class="sub-menu">
-                                        <li><a href="shop.html">Productos</a></li>
-										<li><a href="product-details.html">Detalles del producto</a></li> 
-										<li><a href="checkout.html">Checkout</a></li> 
-										<li><a href="cart.html">Carrito</a></li> 
-										<li><a href="login.html">Login</a></li> 
-                                    </ul>
-                                </li> 
-								
-								<li><a href="404.html">404</a></li>
-								<li><a href="contact-us.html">Contacto</a></li>
-							</ul>
-						</div>
-					</div>
-					<div class="col-sm-3">
-						<div class="search_box pull-right">
-							<input type="text" placeholder="Search"/>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div><!--/header-bottom-->
-	</header><!--/header-->
+<body onload="inicio()">
+	<jsp:include page="headerUser.jsp"></jsp:include>
 
 	<section id="cart_items">
 		<div class="container">
@@ -151,14 +63,14 @@
 				<div class="row">
 					<div class="col-sm-3">
 						<div class="shopper-info">
-							<p>Información del Comprador</p>
+							<p>Informaci�n del Comprador</p>
 							<form>
 								<input type="text" placeholder="Nombre">
 								<input type="text" placeholder="Nombre Usuario">
 								<input type="password" placeholder="Contraseña">
 								<input type="password" placeholder="Confirmar Contraseña">
 							</form>
-							<a class="btn btn-primary" href="">Obtener Información</a>
+							<a class="btn btn-primary" href="">Obtener Informaci�n</a>
 							<a class="btn btn-primary" href="">Continuar</a>
 						</div>
 					</div>
@@ -167,21 +79,21 @@
 							<p>Factura A Nombre De</p>
 							<div class="form-one">
 								<form>
-									<input type="text" placeholder="Nombre de la compañia">
+									<input type="text" placeholder="Nombre de la compa�ia">
 									<input type="text" placeholder="Email*">
 									<input type="text" placeholder="Titulo">
 									<input type="text" placeholder="Nombre *">
 									<input type="text" placeholder="Apellido *">
-									<input type="text" placeholder="Dirección 1 *">
-									<input type="text" placeholder="Dirección 2">
+									<input type="text" placeholder="Direcci�n 1 *">
+									<input type="text" placeholder="Direcci�n 2">
 								</form>
 							</div>
 							<div class="form-two">
 								<form>
-									<input type="text" placeholder="ZIP / Código Postal *">
+									<input type="text" placeholder="ZIP / C�digo Postal *">
 									<select>
-										<option>-- País --</option>
-										<option>ESPAÑA</option>
+										<option>-- Pa��s --</option>
+										<option>ESPA�A</option>
 										<option>United States</option>
 										<option>Bangladesh</option>
 										<option>UK</option>
@@ -192,14 +104,14 @@
 										<option>Dubai</option>
 									</select>
 									<select>
-										<option>-- Estado / Provincia / Región --</option>
+										<option>-- Estado / Provincia / Regi�n --</option>
 										
 										<option>Madrid</option>
 										<option>Barcelona</option>
 										<option>Sevilla</option>
 										<option>Vigo</option>
 										<option>Bilbao</option>
-										<option>Cáceres</option>
+										<option>C�ceres</option>
 										<option>Granada</option>
 										<option>Ceuta</option>
 									</select>
@@ -215,13 +127,13 @@
 						<div class="order-message">
 							<p>Envio del pedido</p>
 							<textarea name="message"  placeholder="Notas sobre tu pedido, notas especiales para la entrega" rows="16"></textarea>
-							<label><input type="checkbox"> Envio a la dirección de la facturación</label>
+							<label><input type="checkbox"> Envio a la direcci�n de la facturaci�n</label>
 						</div>	
 					</div>					
 				</div>
 			</div>
 			<div class="review-payment">
-				<h2>Revisión y Pago</h2>
+				<h2>Revisi�n y Pago</h2>
 			</div>
 
 			<div class="table-responsive cart_info">
@@ -246,7 +158,7 @@
 								<p>Web ID: 1089772</p>
 							</td>
 							<td class="cart_price">
-								<p>30€</p>
+								<p>30$</p>
 							</td>
 							<td class="cart_quantity">
 								<div class="cart_quantity_button">
@@ -256,7 +168,7 @@
 								</div>
 							</td>
 							<td class="cart_total">
-								<p class="cart_total_price">$59</p>
+								<p class="cart_total_price">30$</p>
 							</td>
 							<td class="cart_delete">
 								<a class="cart_quantity_delete" href=""><i class="fa fa-times"></i></a>
@@ -355,70 +267,7 @@
 
 	
 
-	<footer id="footer"><!--Footer-->
-		<div class="footer-top">
-			<div class="container">
-				<div class="row">
-					<div class="col-sm-2">
-						<div class="companyinfo">
-							<h2><span>TIW</span>-talaverámica</h2>
-							<p>La mejor cerámica a sólo un CLICK</p>
-						</div>
-					</div>
-					<div class="col-sm-7">
-						<div class="col-sm-3">
-						<div class="single-widget">
-							<h2>Servicios</h2>
-							<ul class="nav nav-pills nav-stacked">
-								<li><a href="">Ayuda ONLINE</a></li>
-								<li><a href="">Contáctenos</a></li>
-								<li><a href="">FAQ’s</a></li>
-							</ul>
-						</div>
-					</div>
-						
-						<div class="col-sm-3">
-						<div class="single-widget">
-							<h2>Políticas</h2>
-							<ul class="nav nav-pills nav-stacked">
-								<li><a href="">Terminos de uso</a></li>
-								<li><a href="">Política de privacidad</a></li>
-								<li><a href="">Política de reembolso</a></li>
-							</ul>
-						</div>
-					</div>
-						
-						<div class="col-sm-3">
-						<div class="single-widget">
-							<h2>Tienda</h2>
-							<ul class="nav nav-pills nav-stacked">
-								<li><a href="">Información de la compañía</a></li>
-								<li><a href="">Localización de la tienda</a></li>
-								<li><a href="">Copyright</a></li>
-							</ul>
-						</div>
-					</div>
-					</div>
-					<div class="col-sm-3">
-						<div class="address">
-							<img src="images/home/map.png" alt="" />
-							<p>Av de Gregorio Peces-Barba Martínez, Colmenarejo (Madrid)</p>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-		
-		<div class="footer-bottom">
-			<div class="container">
-				<div class="row">
-					<p class="pull-left">Copyright © 2014 TIW-TALAVERÁMICA Inc.Todos los derechos reservados.</p>
-					<p class="pull-right">Diseñado por <span><a target="_blank" href="http://www.uc3m.es">Grupo 50</a></span></p>
-				</div>
-			</div>
-		</div>
-		
-	</footer><!--/Footer-->
+	<jsp:include page="footer.jsp"></jsp:include>
 	
 
 
