@@ -5,6 +5,7 @@ public class User {
 	private long id;
 	private int type;
 	private String enterprise;
+	private int documentType;
 	private String document;
 	private String password;
 	private String name;
@@ -35,6 +36,12 @@ public class User {
 	}
 	public final void setDocument(String document) {
 		this.document = document;
+	}
+	public int getDocumentType() {
+		return documentType;
+	}
+	public void setDocumentType(int documetType) {
+		this.documentType = documetType;
 	}
 	public final String getPassword() {
 		return password;
