@@ -50,6 +50,7 @@
 							<input type="text" placeholder="Contraseña" id="password" name="password"/>
 							<button type="submit" class="btn btn-default">Iniciar sesión</button>
 						</form>
+						
 					</div><!--/login form-->
 				</div>
 				<div class="col-sm-1">
@@ -58,7 +59,7 @@
 				<div class="col-sm-4">
 					<div class="signup-form"><!--sign up form-->
 						<h2>Crear cuenta nueva</h2>
-						<form action="#">
+						<form action="tiwReg" method="get">
 							<input type="text" placeholder="Nombre"/>
 							<input type="email" placeholder="Dirección de correo"/>
 							<input type="password" placeholder="Contraseña"/>

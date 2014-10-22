@@ -49,15 +49,34 @@ public class Slogin extends HttpServlet {
 			user.setType(0);
 			
 			request.getSession(true).setAttribute("usuarioActual", user);
-			response.sendRedirect("index.jsp");
+			//response.sendRedirect("/tiw");
+			String forwardJSP = "/catalogo.jsp";
+			forward(request,response, forwardJSP);
 		}
 		else
 		{
 			request.getSession(true).setAttribute("error", "Los datos son incorrectos");
-			response.sendRedirect("login.jsp");
+			//response.sendRedirect("login.jsp");
+			String forwardJSP = "/login.jsp";
+			forward(request,response, forwardJSP);
 		}
 		
 		
+	}
+	protected void forward(HttpServletRequest request, HttpServletResponse response, String uri) {
+		
+		try {
+			
+			javax.servlet.RequestDispatcher dispatcher =request.getRequestDispatcher(response.encodeURL(uri));
+			dispatcher.forward(request, response);
+			return;
+
+		} catch (ServletException se) {
+			se.printStackTrace();
+
+		} catch (java.io.IOException ioe) {
+			ioe.printStackTrace();
+		}
 	}
 
 }

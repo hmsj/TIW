@@ -15,7 +15,7 @@ public class ObtenerProductos {
 		{
 			//llamada a BBDD
 			/*esta parte se encontraria comentada hasta que implementemos la conexión con la BBDD*/
-			int numeroProductos = 5;
+			int numeroProductos = 2;
 			int tiposProducto = 6;
 			int contadorIdProductos = 1;
 			for (int y = 0; y < tiposProducto; y++)
