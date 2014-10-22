@@ -236,13 +236,13 @@ function filtrarResultados(tipoProductoSeleccionado)
 											<img src="images/home/product1.jpg" alt="" />
 											<h2><%=objetoProducto.getPrice()%>€</h2>
 											<p><%=objetoProducto.getName()%></p>
-											<a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Añadir al carro</a>
+											<a href="SCart?idPro=<%=objetoProducto.getId()%>" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Añadir al carro</a>
 										</div>
 										<div class="product-overlay">
 											<div class="overlay-content">
 												<h2><%=objetoProducto.getPrice()%>€</h2>
 												<p><%=objetoProducto.getDescription()%></p>
-												<a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Añadir al carro</a>
+												<a href="SCart?idPro=<%=objetoProducto.getId()%>" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Añadir al carro</a>
 											</div>
 										</div>
 								</div>
