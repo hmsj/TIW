@@ -8,11 +8,12 @@ public class RegistrarUsuarios {
 	{
 			int respuestaRegistro = 0;
 			//llamada a BBDD
-			/*esta parte se encontraria comentada hasta que implementemos la conexión con la BBDD*/
-						
+			/*esta parte se encontraria comentada hasta que implementemos la conexión con la BBDD*/			
 		
 		return respuestaRegistro;
 		
 	}
+	
+	
 
 }
