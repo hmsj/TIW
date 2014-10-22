@@ -25,7 +25,7 @@ public class ServletCatalogo extends HttpServlet {
     /**
 	 * 
 	 */
-	private static final long serialVersionUID = -8106278358312912989L;
+	//private static final long serialVersionUID = -8106278358312912989L;
 
 	/**
      * @see HttpServlet#HttpServlet()

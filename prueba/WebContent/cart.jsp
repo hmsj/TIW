@@ -33,7 +33,7 @@ ArrayList<Product> listadoProductos = logicaObtenerProducto.obtenerProductos(0);
 List<Product> productsInCart=(List<Product>) request.getSession().getAttribute("producInCart");
 double subtotal=Double.parseDouble("0");
 %>
-<body onload="inicio()">
+<body onload="inicio()" > 
 	<jsp:include page="headerUser.jsp"></jsp:include>
 
 	<section id="cart_items">
