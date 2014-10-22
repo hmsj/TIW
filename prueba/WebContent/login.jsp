@@ -47,8 +47,9 @@
 						%>
 						<form action="Slogin" method="post">
 							<input type="text" placeholder="Usuario"  id="user" name="user"/>
-							<input type="text" placeholder="Contraseña" id="password" name="password"/>
+							<input type="password" placeholder="Contraseña" id="password" name="password"/>
 							<button type="submit" class="btn btn-default">Iniciar sesión</button>
+							
 						</form>
 						
 					</div><!--/login form-->
@@ -60,9 +61,6 @@
 					<div class="signup-form"><!--sign up form-->
 						<h2>Crear cuenta nueva</h2>
 						<form action="tiwReg" method="get">
-							<input type="text" placeholder="Nombre"/>
-							<input type="email" placeholder="Dirección de correo"/>
-							<input type="password" placeholder="Contraseña"/>
 							<button type="submit" class="btn btn-default">Crear</button>
 						</form>
 					</div><!--/sign up form-->

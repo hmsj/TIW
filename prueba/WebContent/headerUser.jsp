@@ -84,8 +84,8 @@
 								<li><a href="#"><i class="fa fa-user"></i> Mi Cuenta</a></li>									
 									<% } %>
 								<li><a href="checkout.jsp"><i class="fa fa-crosshairs"></i> Checkout</a></li>
-								<li><a href="cart.jsp"><i class="fa fa-shopping-cart"></i> Carrito</a></li>
-								<li><a href="login.jsp"><i class="fa fa-lock"></i> Login</a></li>
+								<li><a href="SCart"><i class="fa fa-shopping-cart"></i> Carrito</a></li>
+								<li><a href="Slogin" ><i class="fa fa-lock"></i> Login</a></li>
 								<!--<li><a href="registro.jsp"><i class="fa fa-lock"></i> Registro</a></li>-->
 								<li><a href="tiwReg"><i class="fa fa-lock"></i> Registro</a></li> 
 							</ul>

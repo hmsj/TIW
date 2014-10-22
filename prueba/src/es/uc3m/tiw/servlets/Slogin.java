@@ -28,8 +28,12 @@ public class Slogin extends HttpServlet {
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
+    
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
+		String forwardJSP = "/login.jsp";
+		forward(request,response, forwardJSP);	
+
 	}
 
 	/**
@@ -39,7 +43,7 @@ public class Slogin extends HttpServlet {
 		// TODO Auto-generated method stub
 		String usuario=request.getParameter("user");
 		String password=request.getParameter("password");
-		String forwardJSP ="";
+		String forwardJSP ="/catalogo.jsp";
 		
 		// Buscar el user en a BBDD
 		
@@ -53,7 +57,7 @@ public class Slogin extends HttpServlet {
 			
 			request.getSession(true).setAttribute("usuarioActual", user);
 			forwardJSP="/catalogoAdmin.jsp";
-			forward(request,response, forwardJSP);
+			
 			//response.sendRedirect("index.jsp");
 		}
 		else if(usuario!=null&&password!=null&&usuario.equalsIgnoreCase("user")&&password.equals("user")){
@@ -63,7 +67,7 @@ public class Slogin extends HttpServlet {
 			
 			request.getSession(true).setAttribute("usuarioActual", user);
 			forwardJSP="/catalogo.jsp";
-			forward(request,response, forwardJSP);
+			
 			//response.sendRedirect("index.jsp");
 		}
 		else if(usuario!=null&&password!=null&&usuario.equalsIgnoreCase("prov")&&password.equals("prov")){
@@ -74,14 +78,15 @@ public class Slogin extends HttpServlet {
 			request.getSession(true).setAttribute("usuarioActual", user);
 			
 			forwardJSP="/catalogoAdmin.jsp";
-			forward(request,response, forwardJSP);
+			
 			//response.sendRedirect("index.jsp");
 		}
 		else
 		{
 			request.getSession(true).setAttribute("error", "Los datos son incorrectos");
-			response.sendRedirect("login.jsp");
+			forwardJSP="/catalogoAdmin.jsp";
 		}
+		forward(request,response, forwardJSP);
 		
 		
 	}
