@@ -39,17 +39,43 @@ public class Slogin extends HttpServlet {
 		// TODO Auto-generated method stub
 		String usuario=request.getParameter("user");
 		String password=request.getParameter("password");
+		String forwardJSP ="";
 		
 		// Buscar el user en a BBDD
 		
 		if(usuario!=null&&password!=null&&usuario.equalsIgnoreCase("admin")&&password.equals("admin"))
 		{
+			
 			User user= new User();
 			user.setName("Administrator");
-			user.setType(0);
+			user.setType(3);
+			
 			
 			request.getSession(true).setAttribute("usuarioActual", user);
-			response.sendRedirect("index.jsp");
+			forwardJSP="/catalogoAdmin.jsp";
+			forward(request,response, forwardJSP);
+			//response.sendRedirect("index.jsp");
+		}
+		else if(usuario!=null&&password!=null&&usuario.equalsIgnoreCase("user")&&password.equals("user")){
+			User user= new User();
+			user.setName("Usuario");
+			user.setType(1);
+			
+			request.getSession(true).setAttribute("usuarioActual", user);
+			forwardJSP="/catalogo.jsp";
+			forward(request,response, forwardJSP);
+			//response.sendRedirect("index.jsp");
+		}
+		else if(usuario!=null&&password!=null&&usuario.equalsIgnoreCase("prov")&&password.equals("prov")){
+			User user= new User();
+			user.setName("Proveedor");
+			user.setType(2);
+			
+			request.getSession(true).setAttribute("usuarioActual", user);
+			
+			forwardJSP="/catalogoAdmin.jsp";
+			forward(request,response, forwardJSP);
+			//response.sendRedirect("index.jsp");
 		}
 		else
 		{
@@ -58,6 +84,21 @@ public class Slogin extends HttpServlet {
 		}
 		
 		
+	}
+protected void forward(HttpServletRequest request, HttpServletResponse response, String uri) {
+		
+		try {
+			
+			javax.servlet.RequestDispatcher dispatcher =request.getRequestDispatcher(response.encodeURL(uri));
+			dispatcher.forward(request, response);
+			return;
+
+		} catch (ServletException se) {
+			se.printStackTrace();
+
+		} catch (java.io.IOException ioe) {
+			ioe.printStackTrace();
+		}
 	}
 
 }
