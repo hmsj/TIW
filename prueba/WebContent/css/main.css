@@ -69,7 +69,7 @@ a#scrollUp i{
 **************************/
 
 .header_top {
-  background: none repeat scroll 0 0 #1a1a1a;
+  background: none repeat scroll 0 0 #4d4d4d;
 }
 
 .contactinfo ul li:first-child{
@@ -254,12 +254,12 @@ a#scrollUp i{
 }
 
 .search_box input {
-  background: #1a1a1a;
+  background: #4d4d4d;
   border: medium none;
   color: #ffffff;
   font-family: 'roboto';
-  font-size: 12px;
-  font-weight: 300;
+  font-size: 15px;
+  font-weight: 500;
   height: 35px;
   outline: medium none;
   padding-left: 10px;
