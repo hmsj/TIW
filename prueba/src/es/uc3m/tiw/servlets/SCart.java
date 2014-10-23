@@ -20,9 +20,14 @@ import es.uc3m.tiw.logica.ObtenerTiposProducto;
  */
 @WebServlet("/SCart")
 public class SCart extends HttpServlet {
-	private static final long serialVersionUID = 1L;
+
        
     /**
+	 * 
+	 */
+	private static final long serialVersionUID = -7497848752935415768L;
+
+	/**
      * @see HttpServlet#HttpServlet()
      */
     public SCart() {
@@ -93,8 +98,8 @@ public class SCart extends HttpServlet {
 		request.setAttribute("LISTA_TIPOS_PRODUCTO", listadoTiposProducto);
 		
 
-		String indexJSP = "/catalogo.jsp";
-		forward(request,response, indexJSP);
+		String forwardJSP = "/catalogo.jsp";
+		forward(request,response, forwardJSP);
 		
 	}
 

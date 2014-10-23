@@ -1,16 +1,19 @@
 <%@ page import="java.util.*" %>
 <%@ page import=" es.uc3m.tiw.logica.*" %>
 <%@ page import=" es.uc3m.tiw.contenedores.*" %>
-<% User usuarioLogado;
+<% 
+	User usuarioLogado;
+	String tagLogin;
+
 	if (request.getSession().getAttribute("userLogado") != null)
 	{
 		usuarioLogado = (User)request.getSession().getAttribute("userLogado");
-		System.out.println(usuarioLogado.getName());
-		System.out.println(usuarioLogado.getDocument());
+		tagLogin = "Logout";
 	}
 	else
-	{
+	{		
 		usuarioLogado = null;
+		tagLogin = "Login";
 	} %>
 <head>
     <meta charset="utf-8">
@@ -77,19 +80,24 @@
 							<ul class="nav navbar-nav">
 								<%if (usuarioLogado != null && !"".equals(usuarioLogado))
 									{%>
-								<li><a href="#"><i class="fa fa-user"></i> Mi Cuenta (<%=usuarioLogado.getName()%> <%=usuarioLogado.getLastName()%>)</a></li>
-								<li><a href="#">Log out</a>
+								<li><a href="tiwPersonalData"><i class="fa fa-user"></i> Mi Cuenta (<%=usuarioLogado.getName()%> <%=usuarioLogado.getLastName()%>)</a></li>
 								<%} 
 								  else
 									{%>
-								<li><a href="#"><i class="fa fa-user"></i> Mi Cuenta</a></li>									
+								<li><a href="tiwPersonalData"><i class="fa fa-user"></i> Mi Cuenta</a></li>									
 									<% } %>
-									
-								<!-- <li><a href="checkout.jsp"><i class="fa fa-crosshairs"></i> Checkout</a></li>  -->
-								<!-- <li><a href="cart.jsp"><i class="fa fa-shopping-cart"></i> Carrito</a></li> -->
-								<!-- <li><a href="login.jsp"><i class="fa fa-lock"></i> Login</a></li>-->
-								<!--<li><a href="registro.jsp"><i class="fa fa-lock"></i> Registro</a></li>-->
-								<!-- <li><a href="tiwReg"><i class="fa fa-lock"></i> Registro</a></li>  -->
+								<li><a href="checkout.jsp"><i class="fa fa-crosshairs"></i> Checkout</a></li>
+								<li><a href="SCart"><i class="fa fa-shopping-cart"></i> Carrito</a></li>
+								<%if (usuarioLogado != null && !"".equals(usuarioLogado))
+									{%>
+								<li><a href="Slogin?logout=yes" ><i class="fa fa-lock"></i> <%=tagLogin%></a></li>
+								<%} 
+								  else
+									{%>
+								<li><a href="Slogin" ><i class="fa fa-lock"></i> <%=tagLogin%></a></li>
+									<% } %>
+
+								<li><a href="tiwReg"><i class="fa fa-lock"></i> Registro</a></li> 
 							</ul>
 						</div>
 					</div>
@@ -115,12 +123,16 @@
 								<li class="dropdown"><a href="#">Tienda<i class="fa fa-angle-down"></i></a>
                                     <ul role="menu" class="sub-menu">
                                         <li><a href="tiw">Productos</a></li>
-                                        <!-- <li><a href="catalogo.jsp">Productos</a></li> -->
-										<!-- <li><a href="product-details.html">Detalles del producto</a></li> --> 
 										<li><a href="checkout.jsp">Checkout</a></li> 
-										<li><a href="cart.jsp">Carrito</a></li> 
-										<li><a href="login.jsp"><i class="fa fa-lock"></i> Login</a></li>
-										<!--<li><a href="registro.jsp"><i class="fa fa-lock"></i> Registro</a></li>  -->
+										<li><a href="SCart">Carrito</a></li> 
+										<%if (usuarioLogado != null && !"".equals(usuarioLogado))
+											{%>
+										<li><a href="Slogin?logout=yes" ><i class="fa fa-lock"></i> <%=tagLogin%></a></li>
+										<%} 
+										  else
+											{%>
+										<li><a href="Slogin" ><i class="fa fa-lock"></i> <%=tagLogin%></a></li>
+										<% } %>
 										<li><a href="tiwReg"><i class="fa fa-lock"></i> Registro</a></li> 
                                     </ul>
                                 </li> 

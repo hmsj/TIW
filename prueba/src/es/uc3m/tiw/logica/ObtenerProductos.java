@@ -6,12 +6,12 @@ import es.uc3m.tiw.contenedores.Product;
 
 public class ObtenerProductos {
 	
-	public ArrayList<Product> obtenerProductos(long enterpriseId)
+	public ArrayList<Product> obtenerProductos(long userId)
 	{
 		
 		ArrayList<Product> listadoProductos = new ArrayList<Product>();
 		
-		if (enterpriseId !=  0)
+		if (userId !=  0)
 		{
 			//llamada a BBDD
 			/*esta parte se encontraria comentada hasta que implementemos la conexión con la BBDD*/
@@ -28,7 +28,7 @@ public class ObtenerProductos {
 					objetoProducto.setType(tipoProducto);
 					objetoProducto.setName("objeto"+contadorIdProductos);
 					objetoProducto.setDescription("descripcion"+contadorIdProductos);
-					objetoProducto.setEnterpriseId(enterpriseId);
+					objetoProducto.setEnterpriseId(userId);
 					objetoProducto.setAvailability(numeroProductos);
 					objetoProducto.setMinPrice(10);
 					objetoProducto.setMaxPrice(50);

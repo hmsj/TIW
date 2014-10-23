@@ -21,11 +21,10 @@ import es.uc3m.tiw.logica.ObtenerTiposProducto;
 @WebServlet("/tiw")	
 public class ServletCatalogo extends HttpServlet {
 
-       
-    /**
+	/**
 	 * 
 	 */
-	//private static final long serialVersionUID = -8106278358312912989L;
+	private static final long serialVersionUID = -5916699719266692995L;
 
 	/**
      * @see HttpServlet#HttpServlet()
@@ -60,7 +59,7 @@ public class ServletCatalogo extends HttpServlet {
 			//ademas de redirigir a la pagina de administracion de solo la empresa asociada con el proveedor
 			if (usuarioLogado.getType() == 2)				
 			{
-				listadoProductos = logicaObtenerProducto.obtenerProductos(Long.parseLong(usuarioLogado.getEnterprise()));
+				listadoProductos = logicaObtenerProducto.obtenerProductos(usuarioLogado.getId());
 				forwardJSP = "/catalogoAdmin.jsp";
 			}
 			//si el usuario logado es administrador, deberemos mostrar todos los productos pero redirigir a la pagina de administracion

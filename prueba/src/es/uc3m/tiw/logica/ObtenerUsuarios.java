@@ -24,7 +24,7 @@ public class ObtenerUsuarios {
 				usuarioFicticio.setDocument("1234A");
 				listadoUsuarios.add(usuarioFicticio);
 				
-				if (usuarioBusqueda.getDocument().equals(listadoUsuarios.get(y).getDocument()))
+				if (usuarioBusqueda.getDocument().equalsIgnoreCase(listadoUsuarios.get(y).getDocument()))
 				{
 					listadoUsuariosFiltrados.add(listadoUsuarios.get(y));
 				}

@@ -125,11 +125,14 @@ public class ServletRegistro extends HttpServlet {
 				//nos debera devolver el userId asociado a dicho usuario, que se tratara de un sequencial incluido en la tabla
 				session.setAttribute("userLogado", usuarioNuevo);	
 				
+				//ya que no registramos realmente, al usuarioNuevo le asignamos el id coincidente con el tipo
+				usuarioNuevo.setId(usuarioNuevo.getType());
+				
 				//si el tipo de usuario logado es proveedor, deberemos solo recuperar los productos de cierta empresa
 				//ademas de redirigir a la pagina de administracion de solo la empresa asociada con el proveedor
 				if (usuarioNuevo.getType() == 2)				
 				{
-					listadoProductos = logicaObtenerProducto.obtenerProductos(Long.parseLong(usuarioNuevo.getEnterprise()));
+					listadoProductos = logicaObtenerProducto.obtenerProductos(usuarioNuevo.getId());
 					forwardJSP = "/catalogoAdmin.jsp";
 				}
 				//si el usuario logado es administrador, deberemos mostrar todos los productos pero redirigir a la pagina de administracion
